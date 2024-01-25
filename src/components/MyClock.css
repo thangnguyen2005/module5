@@ -1,0 +1,23 @@
+#Clock-container {
+    width: 100px; /* Điều chỉnh kích thước container */
+    height: 100px; /* Điều chỉnh kích thước container */
+    overflow: hidden; /* Đảm bảo phần tử con không vượt ra khỏi phần tử container */
+  }
+  
+  #Clock-style {
+    font-family: 'Arial', sans-serif;
+    font-size: 36px;
+    color: #000000;
+    background-color: rgb(54, 239, 91);
+    padding: 20px;
+    border-radius: 50%;
+    text-align: center;
+    display: inline-block;
+  }
+  
+  #Clock-style span {
+    font-weight: bold;
+    color: #ffd700;
+    margin-left: 5px;
+  }
+  
