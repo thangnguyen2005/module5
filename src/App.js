@@ -15,93 +15,27 @@ import Selector from "./components/Selector";
 import MyClock from "./components/MyClock";
 import React, { useState } from 'react';
 import StudentManage from "./StudentManage";
+import Timer from './components/Timer';
+import Cart from './components/Cart';
+import ReactJS from './components/ReactJS';
+import DemoFormik from './components/DemoFormik';
+import Register from './components/Register';
+import RegisterValidation from './components/RegisterValidation';
+import Login from './components/Login';
+import FormLogin from './components/FormLogin';
+import FormLienHe from './components/FormLienHe';
+
 
 function App() {
   return (
-    <div className="Container">
-      <StudentManage />
+    <div>
+      <h1>My App</h1>
+      <FormLienHe />
     </div>
   );
 }
 
 export default App;
-
-// const carList = ['Car 1', 'Car 2', 'Car 3'];
-// const colorList = ['Red', 'Green', 'Blue'];
-
-// function App() {
-//   const [selectedCar, setSelectedCar] = useState({
-//     car: carList[0],
-//     color: colorList[0]
-//   });
-
-//   const handleCarChange = (event) => {
-//     setSelectedCar((previousState) => {
-//       return { ...previousState, car: event.target.value };
-//     });
-//   };
-
-//   const handleColorChange = (event) => {
-//     setSelectedCar((previousState) => {
-//       return { ...previousState, color: event.target.value };
-//     });
-//   };
-
-//   return (
-//     <div>
-//       <h1>Car Selection</h1>
-//       <div>
-//         <label htmlFor="car-select">Select a car:</label>
-//         <select id="car-select" value={selectedCar.car} onChange={handleCarChange}>
-//           {carList.map((car, index) => (
-//             <option key={index} value={car}>
-//               {car}
-//             </option>
-//           ))}
-//         </select>
-//       </div>
-//       <div>
-//         <label htmlFor="color-select">Select a color:</label>
-//         <select id="color-select" value={selectedCar.color} onChange={handleColorChange}>
-//           {colorList.map((color, index) => (
-//             <option key={index} value={color}>
-//               {color}
-//             </option>
-//           ))}
-//         </select>
-//       </div>
-//       <div>
-//         <h2>Selected Car:</h2>
-//         <p>Car: {selectedCar.car}</p>
-//         <p>Color: {selectedCar.color}</p>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default App;
-
-// function App() {
-//   return (
-//     <div className="Container">
-//       <MyClock />
-//     </div>
-//   );
-// }
-
-// export default App;
-
-// function App() {
-//   return <Selector />;
-// }
-
-// export default App;
-
-// function App() {
-//   return <Counter />;
-// }
-
-// export default App;
  
 // class App extends Component {
 //   constructor(props) {
