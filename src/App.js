@@ -24,13 +24,13 @@ import RegisterValidation from './components/RegisterValidation';
 import Login from './components/Login';
 import FormLogin from './components/FormLogin';
 import FormLienHe from './components/FormLienHe';
-
+import ThuVien from './components/ThuVien';
 
 function App() {
   return (
     <div>
       <h1>My App</h1>
-      <FormLienHe />
+      <ThuVien />
     </div>
   );
 }
