@@ -1,56 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 function BookManagementApp() {
-  const [books, setBooks] = useState([]);
-  const [title, setTitle] = useState('');
-  const [quantity, setQuantity] = useState('');
-  const [selectedBook, setSelectedBook] = useState(null);
-
-  const handleTitleChange = (event) => {
-    setTitle(event.target.value);
-  };
-
-  const handleQuantityChange = (event) => {
-    setQuantity(event.target.value);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    if (title.trim() === '') {
-      alert('Tiêu đề là trường bắt buộc');
-      return;
-    }
-
-    if (!Number.isInteger(Number(quantity))) {
-      alert('Số lượng phải là một số');
-      return;
-    }
-
-    const newBook = {
-      title: title,
-      quantity: parseInt(quantity),
-    };
-
-    if (selectedBook) {
-      // Chỉnh sửa thông tin sách
-      setBooks((prevBooks) =>
-        prevBooks.map((book) => (book === selectedBook ? newBook : book))
-      );
-      setSelectedBook(null);
-    } else {
-      // Thêm thông tin sách
-      setBooks((prevBooks) => [...prevBooks, newBook]);
-    }
-
-    setTitle('');
-    setQuantity('');
-  };
+  const [books, setBooks] = React.useState([]);
+  const [selectedBook, setSelectedBook] = React.useState(null);
 
   const handleEdit = (book) => {
     setSelectedBook(book);
-    setTitle(book.title);
-    setQuantity(book.quantity.toString());
   };
 
   const handleDelete = (book) => {
@@ -59,17 +15,63 @@ function BookManagementApp() {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Tiêu đề:
-          <input type="text" value={title} onChange={handleTitleChange} />
-        </label>
-        <label>
-          Số lượng:
-          <input type="text" value={quantity} onChange={handleQuantityChange} />
-        </label>
-        <button type="submit">{selectedBook ? 'Chỉnh sửa' : 'Thêm'}</button>
-      </form>
+      <Formik
+        initialValues={{
+          title: selectedBook ? selectedBook.title : '',
+          quantity: selectedBook ? selectedBook.quantity.toString() : '',
+        }}   
+        enableReinitialize={true} // Cho phép cập nhật giá trị ban đầu khi selectedBook thay đổi
+        validate={(values) => {
+          const errors = {};
+
+          if (!values.title.trim()) {
+            errors.title = 'Tiêu đề là trường bắt buộc';
+          }
+
+          if (!Number.isInteger(Number(values.quantity))) {
+            errors.quantity = 'Số lượng phải là một số';
+          }
+
+          return errors;
+        }}
+        onSubmit={(values, { resetForm }) => {
+          const newBook = {
+            title: values.title,
+            quantity: parseInt(values.quantity),
+          };
+
+          if (selectedBook) {
+            // Chỉnh sửa thông tin sách
+            setBooks((prevBooks) =>
+              prevBooks.map((book) => (book === selectedBook ? newBook : book))
+            );
+            setSelectedBook(null);
+          } else {
+            // Thêm thông tin sách
+            setBooks((prevBooks) => [...prevBooks, newBook]);
+          }
+
+          resetForm();
+        }}
+      >
+        <Form>
+          <div>
+            <label>
+              Tiêu đề:
+              <Field type="text" name="title" />
+              <ErrorMessage name="title" component="div" />
+            </label>
+          </div>
+          <div>
+            <label>
+              Số lượng:
+              <Field type="text" name="quantity" />
+              <ErrorMessage name="quantity" component="div" />
+            </label>
+          </div>
+          <button type="submit">{selectedBook ? 'Chỉnh sửa' : 'Thêm'}</button>
+        </Form>
+      </Formik>
 
       <table>
         <thead>
